@@ -1,95 +1,34 @@
-Introduction
+LibraryMU
 ============
 
-**AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 4](https://getbootstrap.com)** framework.
-Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
+LibraryMU is an assignment for Manajemen Basis Data (Database Management) class. This application is a free materials/books collection. You can read every materials available there, and get some points for reading. Every month, the top leaderboard will be given a present from the developer because they do goods on reading. You can also challenge your friend about some materials there to get some points (not all materials is available to be challenged to your friend) ;)
 
-**Download & Preview on [AdminLTE.io](https://adminlte.io)**
-
-Looking for Premium Templates?
+Stack Tools Used
 ------------------------------
-AdminLTE.io just opened a new premium templates page. Hand picked to insure the best quality and the most affordable
-prices. Visit https://adminlte.io/premium for more information.
-
-!["AdminLTE Presentation"](https://adminlte.io/AdminLTE3.png "AdminLTE Presentation")
-
-**AdminLTE** has been carefully coded with clear comments in all of its JS, SCSS and HTML files.
-SCSS has been used to increase code customizability.
+We use the following codes on LibraryMU:
+1. __[AdminLTE.io](https://adminlte.io)__ and their dependencies
+2. __[DanielnetoDotCom's ServerMonitor (with some modifications)](https://github.com/DanielnetoDotCom/ServerMonitor)__
+3. __[futurepress' Epub.JS](https://github.com/futurepress/epub.js/)__
+4. __[Node.js](https://nodejs.org/en/)__
+5. __[Atom](https://atom.io)__
+6. __[XAMPP Stack](https://www.apachefriends.org/index.html)__
 
 Installation
 ------------
-There are multiple ways to install AdminLTE.
+This project required you to have **PHP Version >= 7.0**
+1. Fork this repo, then clone to your server
+2. Import the database from ***db*** folder
+3. Login ;)
 
-#### Download:
-
-Download from Github or [visit AdminLTE.io](https://adminlte.io) and download the latest release.
-
-#### Using The Command Line:
-
-**NPM**
-```bash
-npm install admin-lte
-```
-
-**Github**
-
-- Clone to your machine
-```
-git clone https://github.com/almasaeed2010/AdminLTE.git
-```
-
-Documentation
--------------
-Visit the [online documentation](https://adminlte.io/themes/AdminLTE/documentation/index.html) for the most
-updated guide. Information will be added on a weekly basis.
-
-Browser Support
----------------
-- IE 10+
-- Firefox (latest)
-- Chrome (latest)
-- Safari (latest)
-- Opera (latest)
-
-Contribution
-------------
-Contribution are always **welcome and recommended**! Here is how:
-
-- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
-- Clone to your machine ```git clone https://github.com/YOUR_USERNAME/AdminLTE.git```
-- Create a new branch
-- Make your changes
-- Create a pull request
-
-#### Contribution Requirements:
-
-- When you contribute, you agree to give a non-exclusive license to AdminLTE.io to use that contribution in any context as we (AdminLTE.io) see appropriate.
-- If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
-- Contributions are only accepted through Github pull requests.
-- Finally, contributed code must work in all supported browsers (see above for browser support).
-
-License
--------
-AdminLTE is an open source project by [AdminLTE.io](https://adminlte.io) that is licensed under [MIT](http://opensource.org/licenses/MIT). AdminLTE.io
-reserves the right to change the license of future releases.
-
-Legacy Releases
----------------
-- [AdminLTE 2](https://github.com/almasaeed2010/AdminLTE/releases/tag/v2.4.3)
-- [AdminLTE 1](https://github.com/almasaeed2010/AdminLTE/releases/tag/1.3.1)
-
-Change log
+Messages
 ----------
-Visit the [releases](https://github.com/almasaeed2010/AdminLTE/releases) page to view the changelog
+I do this project alone, and spent a lot of coffee in front of my monitor. So please, if you found a bug, report to me, i'll become the happiest man in earth if you could help me to make this project cleans and ready-to-deploy.
 
-Image Credits
+Greetings To
 -------------
-[Pixeden](http://www.pixeden.com/psd-web-elements/flat-responsive-showcase-psd)
-
-[Graphicsfuel](http://www.graphicsfuel.com/2013/02/13-high-resolution-blur-backgrounds/)
-
-[Pickaface](http://pickaface.net/)
-
-[Unsplash](https://unsplash.com/)
-
-[Uifaces](http://uifaces.com/)
+- My Mom, Dad, and younger sister.
+- My college lecturers.
+- My best friends out there.
+- My ex-girlfriend
+- My crushes
+- My Masamalas TC 15 and C1F friends

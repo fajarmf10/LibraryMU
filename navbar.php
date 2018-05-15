@@ -17,7 +17,9 @@
           <span class="float-right text-muted text-sm">4 books</span>
         </a>
         <div class="dropdown-divider"></div>
-        <a href="logout.php" class="dropdown-item dropdown-footer">LOGOUT</a>
+        <a href="logout.php" class="dropdown-item dropdown-footer" onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">LOGOUT</a>
+        <form method="POST" action="logout.php" style="display: none;" id="logout-form"></form>
       </div>
     </li>
   </ul>
