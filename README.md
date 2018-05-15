@@ -1,4 +1,4 @@
-LibraryMU
+[Work In Progress] LibraryMU
 ============
 
 LibraryMU is an assignment for Manajemen Basis Data (Database Management) class. This application is a free materials/books collection. You can read every materials available there, and get some points for reading. Every month, the top leaderboard will be given a present from the developer because they do goods on reading. You can also challenge your friend about some materials there to get some points (not all materials is available to be challenged to your friend) ;)
@@ -15,7 +15,7 @@ We use the following codes on LibraryMU:
 
 Installation
 ------------
-This project required you to have **PHP Version >= 7.0**
+This project require you to have **PHP Version >= 7.0**
 1. Fork this repo, then clone to your server
 2. Import the database from ***db*** folder
 3. Login ;)
