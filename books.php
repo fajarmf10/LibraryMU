@@ -69,34 +69,52 @@
             <div class="card-header">
               <h3 class="card-title">Collections</h3>
             </div>
+
+            <?php
+            include('system/db_connect.php');
+            $query = "CALL sp_books()";
+            $sql = mysqli_query($db, $query) or die("Query fail : ".mysqli_error($db));
+            // var_dump($rows);
+            ?>
+
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="bookscollection" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Title</th>
+                  <th>Book Title</th>
                   <th>Category</th>
                   <th>Uploaded At</th>
                   <th>Total Readers</th>
-                  <th></th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>28 Oktober 2010</td>
-                  <td>Win 95+</td>
-                  <td>
-                    <div class="text-center">
-                      <a href="https://fajarmf.com/.pdf/python-data-science-handbook.epub" target="_blank"><i class="fa fa-search-plus" title="Read Now" aria-hidden="true"></i></a>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                      <i class="fa fa-plus-circle" title="Add to Library" aria-hidden="true"></i>
-                    </div>
-                  </td>
-                </tr>
+
+                    <?php
+                      while ($row = $sql->fetch_assoc()) {
+                        // var_dump($row);
+                        echo "<tr><td>" . $row["title"] . "</td>";
+                        echo "<td>" . $row["category"] . "</td>";
+                        echo "<td>" . $row["created_at"] . "</td>";
+                        echo "<td>" . $row["count"] . "</td>";
+                        if($row["type"] === "pdf"){
+                          echo "<td><div class='text-center'>
+                          <a href='https://fajarmf.com/.pdf/" . $row['path'] . "' target='_blank'><i class='fa fa-search-plus' title='Read Now' aria-hidden='true'></i></a>
+                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                          <i class='fa fa-plus-circle' title='Add to Library' aria-hidden='true'></i>
+                        </div>
+                      </td></tr>";
+                        } else{
+                          echo "<td><div class='text-center'>
+                          <a href='epub.php?pdf=" . $row['path'] . "' target='_blank'><i class='fa fa-search-plus' title='Read Now' aria-hidden='true'></i></a>
+                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                          <i class='fa fa-plus-circle' title='Add to Library' aria-hidden='true'></i>
+                          </div>
+                          </td></tr>";
+                        }
+                      }
+                    ?>
                 </tbody>
               </table>
             </div>

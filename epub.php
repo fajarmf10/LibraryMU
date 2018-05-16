@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+  header("Location: login.php");
+  die;
+}
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    include "system/db_connect.php";
+    $url = mysqli_real_escape_string($db, $_GET['pdf']);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +20,6 @@
   <script src="dist/js/epub.js"></script>
 
   <link rel="stylesheet" type="text/css" href="epub.css">
-
-
 </head>
 <body>
   <select id="toc"></select>
@@ -22,7 +31,7 @@
     var url = params && params.get("url") && decodeURIComponent(params.get("url"));
     var currentSectionIndex = (params && params.get("loc")) ? params.get("loc") : undefined;
 
-    window.book = ePub(url || "https://fajarmf.com/.pdf/python-data-science-handbook.epub");
+    window.book = ePub(url || "https://fajarmf.com/.pdf/" + "<?php echo $url; ?>");
     var rendition = book.renderTo("viewer", {
       manager: "continuous",
       flow: "paginated",
