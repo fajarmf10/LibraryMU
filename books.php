@@ -91,7 +91,7 @@
                   <td>Win 95+</td>
                   <td>
                     <div class="text-center">
-                      <a href="https://fajarmf.com/.pdf/advanced-machine-learning-with-python.pdf" target="_blank"><i class="fa fa-search-plus" title="Read Now" aria-hidden="true"></i></a>
+                      <a href="https://fajarmf.com/.pdf/python-data-science-handbook.epub" target="_blank"><i class="fa fa-search-plus" title="Read Now" aria-hidden="true"></i></a>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                       <i class="fa fa-plus-circle" title="Add to Library" aria-hidden="true"></i>
                     </div>
@@ -120,5 +120,7 @@
 <!-- ./wrapper -->
 
 <?php include('script.php'); ?>
+<script src="dist/js/epub.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
 </body>
 </html>
