@@ -5,7 +5,9 @@
   }
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include "system/db_connect.php";
-    $query = "CALL sp_login('$_POST[username]','$_POST[password]')";
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $query = "CALL sp_login('$username','$password')";
     $sql = mysqli_query($db, $query) or die("Query fail : ".mysqli_error($db));
     $row = mysqli_fetch_array($sql);
     if($row[0] == 0){
@@ -18,10 +20,10 @@
     }
     else{
       ?>
-                <script type="text/javascript">
-                  alert('<?php echo "$row[1]"; ?>');
-                </script>
-              <?php
+        <script type="text/javascript">
+          alert('<?php echo "$row[1]"; ?>');
+        </script>
+      <?php
     }
   }
 ?>
@@ -76,6 +78,7 @@
             }
 
             .title {
+                color: #D3D3D3;
                 font-family: "Mogra", serif;
                 font-size: 34px;
             }
@@ -116,7 +119,12 @@
                     </div>
                     <div class="field">
                       <p class="control">
-                        <button class="button is-success">LOGIN</button>
+                        <button class="button is-primary">LOGIN</button>
+                      </p>
+                    </div>
+                    <div class="field">
+                      <p class="control">
+                        Need an account? <a href="register.php">Register</a> right now, and get the benefits!
                       </p>
                     </div>
                   </form>
