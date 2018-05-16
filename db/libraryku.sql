@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2018 at 02:50 PM
+-- Generation Time: May 16, 2018 at 07:46 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -31,7 +31,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_daftar` (IN `p_username` VARCHAR
 		IF NOT EXISTS(SELECT 1 FROM users WHERE p_username = username) THEN
 			INSERT INTO users(username, email, fullname, password, type)
 			VALUES	(p_username, p_email, p_fullname, MD5(p_password), 'user');
-			SELECT 0, 'pendaftaran sukses!';
+			SELECT 0, 'Pendaftaran sukses! Silahkan Login!';
 		ELSE
 			SELECT -2, 'username sudah ada';
 		END IF;
@@ -57,6 +57,29 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `books`
+--
+
+CREATE TABLE `books` (
+  `id` int(11) NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `path` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `count` int(11) NOT NULL,
+  `quiz` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`id`, `title`, `category`, `path`, `created_at`, `count`, `quiz`) VALUES
+(1, 'Advanced Machine Learning with Python', 'Python', 'advanced-machine-learning-with-python.pdf', '2018-05-16 04:22:12', 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -66,16 +89,18 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `fullname` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `type` enum('user','admin') NOT NULL
+  `type` enum('user','admin') NOT NULL,
+  `last_login` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `fullname`, `password`, `type`) VALUES
-(1, 'fajarmf', 'admin@fajarmf.com', 'Fajar Maulana Firdaus', 'baf101f077548923d3625174b9a10de1', 'admin'),
-(2, 'user1', 'user1@gmail.com', 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 'user');
+INSERT INTO `users` (`id`, `username`, `email`, `fullname`, `password`, `type`, `last_login`) VALUES
+(1, 'fajarmf', 'admin@fajarmf.com', 'Fajar Maulana Firdaus', 'baf101f077548923d3625174b9a10de1', 'admin', NULL),
+(2, 'user1', 'user1@gmail.com', 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 'user', NULL),
+(5, 'jihaders', 'jihad@masjid.co', 'remajamasjid', 'f01e06ba9e11fec4f94adad1e89a531b', 'user', NULL);
 
 --
 -- Indexes for dumped tables
@@ -95,7 +120,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
