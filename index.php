@@ -63,6 +63,13 @@
     </div>
     <!-- /.content-header -->
 
+    <?php
+    include('system/db_connect.php');
+    $query = "CALL sp_counttoday()";
+    $sql = mysqli_query($db, $query) or die("Query fail : ".mysqli_error($db));
+    $row = $sql->fetch_assoc();
+    ?>
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -72,7 +79,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>2525</h3>
+                <h3><?php echo $row['jumlah']; ?></h3>
 
                 <p>New Books Today</p>
               </div>

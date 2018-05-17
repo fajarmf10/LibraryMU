@@ -67,12 +67,25 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Collections</h3>
-            </div>
+
 
             <?php
             include('system/db_connect.php');
-            $query = "CALL sp_books()";
+            if(isset($_GET['browse']) && $_GET['browse'] === 'trending'){
+              echo '<h3 class="card-title">Hot Trending Books Right Now!</h3>
+            </div>';
+              $query = "CALL sp_trending()";
+            }
+            elseif(isset($_GET['browse']) && $_GET['browse'] === 'today'){
+              echo '<h3 class="card-title">Hot Trending Books Right Now!</h3>
+            </div>';
+              $query = "CALL sp_today()";
+            }
+            else{
+              echo '<h3 class="card-title">Books Collections</h3>
+            </div>';
+              $query = "CALL sp_books()";
+            }
             $sql = mysqli_query($db, $query) or die("Query fail : ".mysqli_error($db));
             // var_dump($rows);
             ?>
@@ -92,11 +105,15 @@
                 <tbody>
 
                     <?php
+
                       while ($row = $sql->fetch_assoc()) {
                         // var_dump($row);
                         echo "<tr><td>" . $row["title"] . "</td>";
                         echo "<td>" . $row["category"] . "</td>";
-                        echo "<td>" . $row["created_at"] . "</td>";
+
+                        $parsedate = new DateTime($row['created_at']);
+                        echo "<td>" . $parsedate->format('H:i:s&\nb\sp;&\nb\sp;d M Y') . "</td>";
+
                         echo "<td>" . $row["count"] . "</td>";
                         if($row["type"] === "pdf"){
                           echo "<td><div class='text-center'>
