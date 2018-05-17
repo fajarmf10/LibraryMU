@@ -117,7 +117,8 @@
                         echo "<td>" . $row["count"] . "</td>";
                         if($row["type"] === "pdf"){
                           echo "<td><div class='text-center'>
-                          <a href='https://fajarmf.com/.pdf/" . $row['path'] . "' target='_blank'><i class='fa fa-search-plus' title='Read Now' aria-hidden='true'></i></a>
+                          <a id='clickthis".$row['id']."' href='https://fajarmf.com/.pdf/" . $row['path'] . "' hidden target='_newtab'></a>
+                          <a href='#' onclick='openBook(". $row['id'] .")'><i class='fa fa-search-plus' title='Read Now' aria-hidden='true'></i></a>
                           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                           <i class='fa fa-plus-circle' title='Add to Library' aria-hidden='true'></i>
                         </div>
@@ -153,9 +154,27 @@
 
 </div>
 <!-- ./wrapper -->
-
 <?php include('script.php'); ?>
-<script src="dist/js/epub.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+<script type="text/javascript">
+  function openBook(id) {
+    $.ajax({
+      url: 'ajax/book_counter.php',
+      type: 'POST',
+      data: "id=" + id,
+      success: function(response){
+        if(response=="ok"){
+          $('#clickthis'+id)[0].click();
+        }
+        else{
+          alert("GAGAL");
+        }
+      },
+      error : function(){
+         alert("Tidak dapat menyimpan data!");
+      },
+      async: false
+    });
+  }
+</script>
 </body>
 </html>
