@@ -125,7 +125,8 @@
                       </td></tr>";
                         } else{
                           echo "<td><div class='text-center'>
-                          <a href='epub.php?pdf=" . $row['path'] . "' target='_blank'><i class='fa fa-search-plus' title='Read Now' aria-hidden='true'></i></a>
+                          <a id='clickthis".$row['id']."' href='epub.php?pdf=" . $row['path'] . "' hidden target='_newtab'></a>
+                          <a href='#'  onclick='openBook(". $row['id'] .")'><i class='fa fa-search-plus' title='Read Now' aria-hidden='true'></i></a>
                           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                           <i class='fa fa-plus-circle' title='Add to Library' aria-hidden='true'></i>
                           </div>
