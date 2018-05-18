@@ -22,7 +22,7 @@
         </li>
 
         <li class="nav-item has-treeview">
-          <a href class="nav-link">
+          <a class="nav-link">
             <i class="nav-icon fa fa-book"></i>
             <p>
               Books
@@ -48,6 +48,16 @@
                 <p>Today's Books</p>
               </a>
             </li>
+            <?php
+            if($_SESSION['usertype'] === "admin"){
+              echo "<li class='nav-item'>
+                <a href='addbook.php' class='nav-link'>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class='fa fa-plus nav-icon'></i>
+                  <p>Add Book</p>
+                </a>
+              </li>";
+            }
+            ?>
           </ul>
         </li>
 
@@ -60,14 +70,35 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
-            <i class="nav-icon fa fa-question-circle"></i>
-            <p>
-              Quiz
-            </p>
-          </a>
-        </li>
+          <?php
+          if($_SESSION['usertype'] === "admin"){
+            echo "<li class='nav-item has-treeview'>
+                      <a class='nav-link'>
+                        <i class='nav-icon fa fa-question-circle'></i>
+                        <p>
+                          Quiz
+                          <i class='right fa fa-angle-left'></i>
+                        </p>
+                      </a>
+                    ";
+            echo "<ul class='nav nav-treeview'><li class='nav-item'>
+              <a href='blalalala.php' class='nav-link'>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class='fa fa-plus nav-icon'></i>
+                <p>Add Quiz</p>
+              </a>
+            </li></ul></li>";
+          }
+          else {
+            echo "<li class='nav-item'>
+                      <a href='pages/widgets.html' class='nav-link'>
+                        <i class='nav-icon fa fa-question-circle'></i>
+                        <p>
+                          Quiz
+                        </p>
+                      </a>
+                    </li>";
+          }
+          ?>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
