@@ -114,7 +114,7 @@
               <div class="inner">
                 <h3>21</h3>
 
-                <p>LibraryMU Leaderboard</p>
+                <p>Your Rank on LibraryMU Leaderboard</p>
               </div>
               <div class="icon">
                 <i class="icon ion-md-list"></i>
