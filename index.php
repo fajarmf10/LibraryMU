@@ -96,7 +96,7 @@
               <div class="inner">
                 <h3>44</h3>
 
-                <p>User Reading Right Now!</p>
+                <p>User Browsing Book Right Now!</p>
               </div>
               <div class="icon">
                 <i class="icon ion-md-glasses"></i>

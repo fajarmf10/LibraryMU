@@ -22,7 +22,7 @@
         </li>
 
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href class="nav-link">
             <i class="nav-icon fa fa-book"></i>
             <p>
               Books
@@ -32,26 +32,20 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="books.php" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="fa fa-circle-o nav-icon"></i>
                 <p>Browse Books</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="books.php?browse=trending" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="fa fa-circle-o nav-icon"></i>
                 <p>Top 10 Trending Books!</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="chartjs.html" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
+              <a href="books.php?browse=today" class="nav-link">
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="fa fa-circle-o nav-icon"></i>
                 <p>Today's Books</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="flot.html" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
-                <p>By Category</p>
               </a>
             </li>
           </ul>
