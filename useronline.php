@@ -20,10 +20,6 @@ else {
   $result2 = mysqli_query($db, $sql2) or die("Query fail : ".mysqli_error($db));
 }
 
-$sql3              = "SELECT * FROM `online_users`";
-$result3           = mysqli_query($db, $sql3) or die("Query fail : ".mysqli_error($db));
-$count_user_online = mysqli_num_rows($result3);
-
 $sql4    = "DELETE FROM `online_users` WHERE `time` < $time_check";
 $result4 = mysqli_query($db, $sql4) or die("Query fail : ".mysqli_error($db));
 
