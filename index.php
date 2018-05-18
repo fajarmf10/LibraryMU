@@ -4,6 +4,9 @@
     header("Location: login.php");
     die;
   }
+
+  // Let's make an online-user-counter
+  include('useronline.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -94,9 +97,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3 id="useronline"></h3>
 
-                <p>User Browsing Book Right Now!</p>
+                <p>Users Browsing Book Right Now!</p>
               </div>
               <div class="icon">
                 <i class="icon ion-md-glasses"></i>
@@ -131,7 +134,7 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     <i class="fa fa-bar-chart-o"></i>
-                    LibraryMU's Stats
+                    LibraryMU's Server Stats
                   </h3>
 
                   <div class="card-tools">
@@ -201,6 +204,7 @@
     getCpu();
     getMem();
     getDisk();
+    getOnlineUser();
   });
 
   function getCpu() {
@@ -212,6 +216,19 @@
           getCpu();
         }, 1000);
       }
+    });
+  }
+
+  function getOnlineUser() {
+    $.ajax({
+      url: 'online.json.php',
+        success: function (response) {
+          // useronline.innertext = response.online;
+          $("#useronline").html(response[10]);
+          setTimeout(function () {
+            getOnlineUser();
+          }, 1000);
+        }
     });
   }
 
