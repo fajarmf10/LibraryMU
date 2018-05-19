@@ -71,12 +71,12 @@
 
             <?php
             include('system/db_connect.php');
-            if(isset($_GET['browse']) && $_GET['browse'] === 'trending'){
+            if(isset($_GET['browse']) && $_GET['browse'] == 'trending'){
               echo '<h3 class="card-title">Hot Trending Books Right Now!</h3>
             </div>';
               $query = "CALL sp_trending()";
             }
-            elseif(isset($_GET['browse']) && $_GET['browse'] === 'today'){
+            elseif(isset($_GET['browse']) && $_GET['browse'] == 'today'){
               echo '<h3 class="card-title">Hot Trending Books Right Now!</h3>
             </div>';
               $query = "CALL sp_today()";
@@ -115,7 +115,7 @@
                         echo "<td>" . $parsedate->format('H:i:s&\nb\sp;&\nb\sp;d M Y') . "</td>";
 
                         echo "<td>" . $row["count"] . "</td>";
-                        if($row["type"] === "pdf"){
+                        if($row["type"] == "pdf"){
                           echo "<td><div class='text-center'>
                           <a id='clickthis".$row['id']."' href='https://fajarmf.com/.pdf/" . $row['path'] . "' hidden target='_newtab'></a>
                           <a href='#' onclick='openBook(". $row['id'] .")'><i class='fa fa-search-plus' title='Read Now' aria-hidden='true'></i></a>
