@@ -4,6 +4,7 @@
     header("Location: login.php");
     die;
   }
+  include('system/db_connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,36 +77,33 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
-                <div class="card-body">
+              <div class="card-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <form enctype="multipart/form-data" action="https://fajarmf.com/.files/upfile.php" method="POST">
+                      <form enctype="multipart/form-data" action="https://fajarmf.com/.pdf/upfile.php" method="POST">
                         <div class="form-group">
                           <label>Title</label>
-                          <input type="text" class="form-control" placeholder="Enter book title here...">
+                          <input type="text" class="form-control" name="title" placeholder="Enter book title here...">
                         </div>
                         <div class="form-group">
-                          <label>Minimal</label>
+                          <label>Category</label>
                           <select class="form-control selectcategory" style="width: 100%;">
-                            <option>Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                            <?php
+                            $queryoption = 'CALL sp_addbook()';
+                            $sql = mysqli_query($db, $queryoption) or die("Query fail : ".mysqli_error($db));
+                            // $row = mysqli_fetch_assoc($sql);
+                            while($row = mysqli_fetch_assoc($sql)){
+                              echo "<option name='category'>" . $row['category'] . "</option>";
+                            }
+                            ?>
                           </select>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputFile">File input</label>
+                          <label for="InputFile">File input</label>
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile">
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                              <span class="input-group-text" id="">Upload</span>
+                              <input type="file" class="custom-file-input" name="book" id="InputFile">
+                              <label class="custom-file-label" for="InputFile">Choose file</label>
                             </div>
                           </div>
                         </div>
@@ -122,7 +120,6 @@
                             </label>
                           </div>
                         </div>
-                      </form>
                 </div>
               </div>
               </div>
@@ -153,37 +150,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $('.selectcategory').select2();
+  $('.selectcategory').select2({
+    tags: true,
+  });
   $('input[type="checkbox"].flat-green, input[type="radio"].flat-green').iCheck({
     checkboxClass: 'icheckbox_flat-green',
     radioClass   : 'iradio_flat-green'
   });
+
 });
 </script>
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<script type="text/javascript">
-  function openBook(id) {
-    $.ajax({
-      url: 'ajax/book_counter.php',
-      type: 'POST',
-      data: "id=" + id,
-      success: function(response){
-        if(response=="ok"){
-          $('#clickthis'+id)[0].click();
-        }
-        else{
-          alert("GAGAL");
-        }
-      },
-      error : function(){
-         alert("Tidak dapat menyimpan data!");
-      },
-      async: false
-    });
-  }
 </script>
 </body>
 </html>
