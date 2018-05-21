@@ -83,17 +83,16 @@
                       <form enctype="multipart/form-data" method="POST" id="inputBook">
                         <div class="form-group">
                           <label>Title</label>
-                          <input type="text" class="form-control" name="title" placeholder="Enter book title here...">
+                          <input type="text" class="form-control" name="formtitle" placeholder="Enter book title here...">
                         </div>
                         <div class="form-group">
                           <label>Category</label>
-                          <select class="form-control selectcategory" style="width: 100%;">
+                          <select name="formcategory" class="form-control selectcategory" style="width: 100%;">
                             <?php
                             $queryoption = 'CALL sp_addbook()';
                             $sql = mysqli_query($db, $queryoption) or die("Query fail : ".mysqli_error($db));
-                            // $row = mysqli_fetch_assoc($sql);
                             while($row = mysqli_fetch_assoc($sql)){
-                              echo "<option name='category'>" . $row['category'] . "</option>";
+                              echo "<option>" . $row['category'] . "</option>";
                             }
                             ?>
                           </select>
@@ -111,11 +110,11 @@
                           <label>Contain Quiz?</label>
                           <div class="form-group">
                             <label>
-                              <input type="radio" name="r1" class="flat-green">
+                              <input type="radio" name="formquiz" class="flat-green">
                               Yes
                             </label>
                             <label>
-                              <input type="radio" name="r1" class="flat-green">
+                              <input type="radio" name="formquiz" class="flat-green">
                               No
                             </label>
                           </div>
@@ -153,6 +152,7 @@ $(document).ready(function() {
   $('.selectcategory').select2({
     tags: true,
   });
+  
   $('input[type="checkbox"].flat-green, input[type="radio"].flat-green').iCheck({
     checkboxClass: 'icheckbox_flat-green',
     radioClass   : 'iradio_flat-green'
@@ -161,33 +161,33 @@ $(document).ready(function() {
   $("#submitBtn").click(function (event) {
     event.preventDefault(); // Manual submit
 
-    // var urls = ['subsql.php', '//fajarmf.com/.pdf/upfile.php']
+    var urls = ['//fajarmf.com/.pdf/upfile.php', 'subsql.php'];
     var form = $('#inputBook')[0];
     var data = new FormData(form);
 
     $("#submitBtn").prop("disabled", true);
     $("#submitBtn").html("Uploading File");
-    $.ajax({
-      type: "POST",
-      enctype: 'multipart/form-data',
-      url: '//fajarmf.com/.pdf/upfile.php',
-      data: data,
-      processData: false,
-      contentType: false,
-      cache: false,
-      success: function(data){
-        console.log("SUCCESS : ", data);
-        alert(jQuery.parseJSON(data));
-        submitForm();
-        $("#submitBtn").prop("disabled", false);
-        $("#submitBtn").html("Submit");
-      },
-      error: function(e){
-        console.log("ERROR : ", e);
-        alert("ERROR! ", e);
-        $("#submitBtn").prop("disabled", false);
-        $("#submitBtn").html("Submit");
-      },
+    $.each(urls, function(i,u){
+      $.ajax(u, {
+        type: "POST",
+        enctype: 'multipart/form-data',
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(data){
+          console.log("SUCCESS : ", data);
+          alert(jQuery.parseJSON(data));
+          $("#submitBtn").prop("disabled", false);
+          $("#submitBtn").html("Submit");
+        },
+        error: function(e){
+          console.log("ERROR : ", e);
+          alert("ERROR! ", e);
+          $("#submitBtn").prop("disabled", false);
+          $("#submitBtn").html("Submit");
+        },
+      });
     });
 
   });
