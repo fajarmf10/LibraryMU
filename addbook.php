@@ -80,7 +80,7 @@
               <div class="card-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <form enctype="multipart/form-data" action="https://fajarmf.com/.pdf/upfile.php" method="POST">
+                      <form enctype="multipart/form-data" method="POST" id="inputBook">
                         <div class="form-group">
                           <label>Title</label>
                           <input type="text" class="form-control" name="title" placeholder="Enter book title here...">
@@ -99,7 +99,7 @@
                           </select>
                         </div>
                         <div class="form-group">
-                          <label for="InputFile">File input</label>
+                          <label for="InputFile">Upload your Book</label>
                           <div class="input-group">
                             <div class="custom-file">
                               <input type="file" class="custom-file-input" name="book" id="InputFile">
@@ -107,7 +107,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-right">
                           <label>Contain Quiz?</label>
                           <div class="form-group">
                             <label>
@@ -126,7 +126,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
                 </div>
               </form>
             </div>
@@ -158,7 +158,59 @@ $(document).ready(function() {
     radioClass   : 'iradio_flat-green'
   });
 
+  $("#submitBtn").click(function (event) {
+    event.preventDefault(); // Manual submit
+
+    // var urls = ['subsql.php', '//fajarmf.com/.pdf/upfile.php']
+    var form = $('#inputBook')[0];
+    var data = new FormData(form);
+
+    $("#submitBtn").prop("disabled", true);
+    $("#submitBtn").html("Uploading File");
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '//fajarmf.com/.pdf/upfile.php',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: function(data){
+        console.log("SUCCESS : ", data);
+        alert(jQuery.parseJSON(data));
+        submitForm();
+        $("#submitBtn").prop("disabled", false);
+        $("#submitBtn").html("Submit");
+      },
+      error: function(e){
+        console.log("ERROR : ", e);
+        alert("ERROR! ", e);
+        $("#submitBtn").prop("disabled", false);
+        $("#submitBtn").html("Submit");
+      },
+    });
+
+  });
+
+
+  $('#InputFile').change(function() {
+    var i = $(this).next('label').clone();
+    var file = $('#InputFile')[0].files[0].name;
+    $(this).next('label').text(file);
+  });
+
+
 });
+
+// function submitForm(){
+//   $.ajax({
+//     url: 'subsql.php',
+//     method: 'POST',
+//     success: function (response) {
+//       alert(response);
+//     }
+//   });
+// };
 </script>
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.js"></script>
