@@ -1,23 +1,32 @@
-tantangan
+quiz
 
-id, id_penantang, id_tertantang, created_at, winner
-
-
-
-
-scoretantangan
-
-id, id_tantangan, id_user, score
-id, id_tantangan, id_user, score
+id, nama_quiz, book_quiz, created_at, expired_at, winner (fk user.id)
 
 
 
+soalquiz
+
+id, id_quiz, pertanyaan, jawaban1, jawaban2, jawaban3, jawaban4, jawabanbenar
+
+
+
+scorequiz
+
+id, id_quiz, id_user, score
+id, id_quiz, id_user, score
+
+
+
+
+
+global leaderboard
+
+id (AI), user_id (fk user.id), score(int), created_at(timestamps)
 
 
 leaderboard
 
-id (AI), user_id (fk user.id), score(int), created_at(timestamps)
-
+id(AI), quiz_id (fk quiz.id), user_id (fk user.id), score
 
 
 

@@ -82,7 +82,7 @@
                       </a>
                     ";
             echo "<ul class='nav nav-treeview'><li class='nav-item'>
-              <a href='blalalala.php' class='nav-link'>
+              <a href='addquiz.php' class='nav-link'>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class='fa fa-plus nav-icon'></i>
                 <p>Add Quiz</p>
               </a>
