@@ -83,7 +83,7 @@
                       <form enctype="multipart/form-data" method="POST" id="inputBook">
                         <div class="form-group">
                           <label>Title</label>
-                          <input type="text" class="form-control" name="formtitle" placeholder="Enter book title here...">
+                          <input type="text" class="form-control" name="formtitle" placeholder="Enter book title here..." required>
                         </div>
                         <div class="form-group">
                           <label>Category</label>
@@ -101,7 +101,7 @@
                           <label for="InputFile">Upload your Book</label>
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" name="book" id="InputFile">
+                              <input type="file" class="custom-file-input" name="book" id="InputFile" required>
                               <label class="custom-file-label" for="InputFile">Choose file</label>
                             </div>
                           </div>
@@ -110,11 +110,11 @@
                           <label>Contain Quiz?</label>
                           <div class="form-group">
                             <label>
-                              <input type="radio" name="formquiz" class="flat-green">
+                              <input type="radio" value="1" name="formquiz" class="flat-green" required>
                               Yes
                             </label>
                             <label>
-                              <input type="radio" name="formquiz" class="flat-green">
+                              <input type="radio" value="0" name="formquiz" class="flat-green">
                               No
                             </label>
                           </div>
@@ -152,7 +152,7 @@ $(document).ready(function() {
   $('.selectcategory').select2({
     tags: true,
   });
-  
+
   $('input[type="checkbox"].flat-green, input[type="radio"].flat-green').iCheck({
     checkboxClass: 'icheckbox_flat-green',
     radioClass   : 'iradio_flat-green'
@@ -183,13 +183,12 @@ $(document).ready(function() {
         },
         error: function(e){
           console.log("ERROR : ", e);
-          alert("ERROR! ", e);
+          alert(e);
           $("#submitBtn").prop("disabled", false);
           $("#submitBtn").html("Submit");
         },
       });
     });
-
   });
 
 
