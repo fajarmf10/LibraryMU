@@ -77,14 +77,26 @@
               $query = "CALL sp_trending()";
             }
             elseif(isset($_GET['browse']) && $_GET['browse'] == 'today'){
-              echo '<h3 class="card-title">Hot Trending Books Right Now!</h3>
+              $result = mysqli_query($db, "SELECT * FROM books WHERE DATE(`created_at`) = CURDATE() ORDER BY `created_at` ASC");
+              $total = mysqli_num_rows($result);
+              $halaman = 10;
+              $page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : $_GET["halaman"] = 1;
+              $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
+              $pages = ceil($total/$halaman);
+              echo '<h3 class="card-title">Today\'s Book!</h3>
             </div>';
-              $query = "CALL sp_today()";
+              $query = "CALL sp_today('$mulai', '$halaman')";
             }
             else{
+              $result = mysqli_query($db, "SELECT * FROM books");
+              $total = mysqli_num_rows($result);
+              $halaman = 10;
+              $page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : $_GET["halaman"] = 1;
+              $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
+              $pages = ceil($total/$halaman);
               echo '<h3 class="card-title">Books Collections</h3>
             </div>';
-              $query = "CALL sp_books()";
+              $query = "CALL sp_books('$mulai', '$halaman')";
             }
             $sql = mysqli_query($db, $query) or die("Query fail : ".mysqli_error($db));
             // var_dump($rows);
@@ -136,6 +148,35 @@
                     ?>
                 </tbody>
               </table>
+              <br>
+              <?php
+              if (isset($_GET['halaman'])) {
+                if(isset($_GET['browse']) && $_GET['browse'] == 'today'){
+                  echo "<ul class='pagination pagination-md m-0 float-right'>";
+                  for($i=1; $i<=$pages; $i++){
+                    if($i == (int)$_GET['halaman']){
+                      echo "<li class='page-item active'><a class='page-link' href='?browse=today&halaman=" . $i . "'> " . $i ."</a></li>";
+                    }
+                    else{
+                      echo "<li class='page-item'><a class='page-link' href='?browse=today&halaman=" . $i . "'> " . $i ."</a></li>";
+                    }
+                  }
+                  echo "</ul>";
+                }
+                else{
+                  echo "<ul class='pagination pagination-md m-0 float-right'>";
+                  for($i=1; $i<=$pages; $i++){
+                    if($i == (int)$_GET['halaman']){
+                      echo "<li class='page-item active'><a class='page-link' href='?halaman=" . $i . "'> " . $i ."</a></li>";
+                    }
+                    else{
+                      echo "<li class='page-item'><a class='page-link' href='?halaman=" . $i . "'> " . $i ."</a></li>";
+                    }
+                  }
+                  echo "</ul>";
+                }
+              }
+              ?>
             </div>
             <!-- /.card-body -->
           </div>
