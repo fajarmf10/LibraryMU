@@ -18,9 +18,15 @@
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <span class="dropdown-item dropdown-header">Welcome, <?php echo("{$_SESSION['name']}") ;?></span>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
+        <a href="library.php" class="dropdown-item">
           <i class="fa fa-book mr-2"></i>My Library
-          <span class="float-right text-muted text-sm">4 books</span>
+          <span class="float-right text-muted text-sm"><?php
+          $db = new mysqli("localhost", "root", "", "libraryku");
+          $sql = mysqli_query($db, "SELECT count(*) as `count` FROM `library` WHERE `user_id` = '$_SESSION[id]'");
+          $row = mysqli_fetch_assoc($sql);
+          echo $row['count'];
+          ?>
+          books</span>
         </a>
         <div class="dropdown-divider"></div>
         <a href="logout.php" class="dropdown-item dropdown-footer" onclick="event.preventDefault();

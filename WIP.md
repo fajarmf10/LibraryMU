@@ -24,11 +24,6 @@ global leaderboard
 id (AI), user_id (fk user.id), score(int), created_at(timestamps)
 
 
-leaderboard
-
-id(AI), quiz_id (fk quiz.id), user_id (fk user.id), score
-
-
 
 monthly winner
 

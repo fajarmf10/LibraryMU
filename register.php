@@ -33,6 +33,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css?family=Mogra" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 
         <!-- Styles -->
@@ -64,6 +65,19 @@
                 right: 10px;
                 top: 18px;
             }
+
+
+            .whatis > a {
+                color: #ff0000;
+                padding: 0 25px;
+                font-family: 'Raleway', sans-serif;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
 
             .content {
                 text-align: center;
@@ -127,6 +141,9 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+          <div class="top-right whatis">
+            <a href="whatis.php">What is LibraryMU?</a>
+          </div>
 
             <div class="content">
                 <div class="title m-b-md">
