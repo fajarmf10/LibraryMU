@@ -31,6 +31,7 @@ class TestClass {
     $result3           = mysqli_query($db, $sql3) or die("Query fail : ".mysqli_error($db));
     $count_user_online = mysqli_num_rows($result3);
     $obj->online = $count_user_online;
+    $result3->close();
     return json_encode($obj);
   }
 }

@@ -66,13 +66,6 @@
     </div>
     <!-- /.content-header -->
 
-    <?php
-    include('system/db_connect.php');
-    $query = "CALL sp_counttoday()";
-    $sql = mysqli_query($db, $query) or die("Query fail : ".mysqli_error($db));
-    $row = $sql->fetch_assoc();
-    ?>
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -82,7 +75,20 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php echo $row['jumlah']; ?></h3>
+                <h3><?php
+                include('system/db_connect.php');
+                $id = $_SESSION['id'];
+                $result = $db->query("call sp_counttoday()");
+                if($result){
+                  while ($row = $result->fetch_object()){
+                      $user_arr[] = $row;
+                  }
+                  echo $user_arr[0]->jumlah;
+                  $result->close();
+                  $db->next_result();
+                }
+                ?>
+                </h3>
 
                 <p>New Books Today</p>
               </div>
@@ -99,7 +105,7 @@
               <div class="inner">
                 <h3 id="useronline"></h3>
 
-                <p>Users Browsing Book Right Now!</p>
+                <p>Users Browsing Right Now!</p>
               </div>
               <div class="icon">
                 <i class="icon ion-md-glasses"></i>
@@ -112,9 +118,37 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>21</h3>
+                <h3><?php
 
-                <p>Your Rank on LibraryMU Leaderboard</p>
+                $result = $db->query("CALL sp_checkrank('$id')");
+                if($result){
+                    while ($row = $result->fetch_object()){
+                        $group_arr[] = $row;
+                    }
+                    // echo $group_arr;
+                    $result->close();
+                    $db->next_result();
+                    echo $group_arr[0]->score;
+                    // print_r($group_arr);
+                }
+                else{
+                  echo($db->error);
+                }
+
+
+                // $checkrank = 'CALL sp_checkrank("$_SESSION["id"]")';
+                // $sql2 = mysqli_query($db, $checkrank);
+                // $rank = mysqli_fetch_array($sql2);
+                // if (1) {
+                //   echo $rank;
+                // }
+                // else{
+                //   echo "N/A";
+                // }
+                ?>
+                </h3>
+
+                <p>Your Score on LibraryMU Leaderboard</p>
               </div>
               <div class="icon">
                 <i class="icon ion-md-list"></i>
