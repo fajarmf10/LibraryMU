@@ -62,7 +62,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="leaderboard.php" class="nav-link">
             <i class="nav-icon fa fa-list-ol"></i>
             <p>
               Leaderboard
