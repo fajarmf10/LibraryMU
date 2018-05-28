@@ -23,21 +23,23 @@ if($_GET['action']=="kirim_jawaban"){
 
 //Memproses data ajax ketika menyelesaikan ujian
 elseif($_GET['action']=="selesai_ujian"){
-   $rnilai = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM nilai WHERE id_ujian='$_POST[ujian]' AND nis='$_SESSION[nis]'"));
+   $rnilai = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM nilaitemp WHERE id_quiz='$_POST[quiz]' AND id_user='$_SESSION[id]'"));
 
-   $arr_soal = explode(",", $rnilai['acak_soal']);
-   $jawaban = explode(",", $rnilai['jawaban']);
+   $arr_soal = explode(",", $rnilai['arrsoal']);
+   $jawaban = explode(",", $rnilai['arrjawaban']);
    $jbenar = 0;
    for($i=0; $i<count($arr_soal); $i++){
-      $rsoal = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM soal WHERE id_ujian='$_POST[ujian]' AND id_soal='$arr_soal[$i]'"));
-      if($rsoal['kunci'] == $jawaban[$i]) $jbenar++;
+      $rsoal = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM soalquiz WHERE id_quiz='$_POST[quiz]' AND id='$arr_soal[$i]'"));
+      if($rsoal['kunci'] == $jawaban[$i]){
+        $jbenar++;
+      }
    }
 
-   $nilai = $jbenar/count($arr_soal)*100;
+   $nilai = $jbenar;
 
-   mysqli_query($db, "UPDATE nilai SET jml_benar='$jbenar', nilai='$nilai' WHERE id_ujian='$_POST[ujian]' AND nis='$_SESSION[nis]'");
+   mysqli_query($db, "UPDATE nilaitemp SET jml_benar='$nilai', nilai='$nilai' WHERE id_quiz='$_POST[quiz]' AND id_user='$_SESSION[id]'");
 
-   mysqli_query($db, "UPDATE siswa SET status='login' WHERE nis='$_SESSION[nis]'");
+   mysqli_query($db, "UPDATE leaderboard SET score=score+'$nilai'+20 WHERE user_id='$_SESSION[id]'");
 
    echo "ok";
 }

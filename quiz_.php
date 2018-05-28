@@ -12,7 +12,6 @@ ini_set('display_errors',1);
   }
 
 
-
   include('system/db_connect.php');
 
   $qquiz = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM quiz WHERE id='$_GET[quiz]'"));
@@ -36,7 +35,7 @@ ini_set('display_errors',1);
 
   $qnilai = mysqli_query($db, "SELECT * FROM nilaitemp WHERE id_user='$_SESSION[id]' AND id_quiz='$_GET[quiz]'");
   if(mysqli_num_rows($qnilai) < 1){
-    mysqli_query($db, "INSERT INTO nilaitemp SET id_user='$_SESSION[id]', id_quiz='$_GET[quiz]', arrjawaban='$jawaban'");
+    mysqli_query($db, "INSERT INTO nilaitemp SET id_user='$_SESSION[id]', id_quiz='$_GET[quiz]', arrsoal='$acak_soal', arrjawaban='$jawaban'");
   }
 
   $qnilai = mysqli_query($db, "SELECT * FROM nilaitemp WHERE id_user='$_SESSION[id]' AND id_quiz='$_GET[quiz]'");
@@ -384,6 +383,28 @@ function selesai(){
    });
 }
 
+
+function selesai_ujian(quiz){
+   $.ajax({
+      url: "ajax/quiz.php?action=selesai_ujian",
+      type: "POST",
+      data: "quiz="+quiz,
+      success: function(data){
+         if(data=="ok"){
+            $('#modal-selesai').modal('hide');
+            $('#modal-selesai').on('hidden.bs.modal', function(){
+               window.location.replace("index.php");
+            });
+         }else{
+            alert(data);
+         }
+      },
+      error: function(){
+         alert('Tidak dapat memproses nilai!');
+      }
+   });
+   return false;
+}
 
 </script>
 </body>
