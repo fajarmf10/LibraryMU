@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LibraryMU - My Library</title>
+  <title>LibraryMU - Leaderboard</title>
   <?php include('meta.php'); ?>
   <style type="text/css">
     .pie_progress {
@@ -49,12 +49,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Your Library</h1>
+            <h1>LibraryMU's Rank</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Your Library</li>
+              <li class="breadcrumb-item active">Leaderboard</li>
             </ol>
           </div>
         </div>
