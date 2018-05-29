@@ -82,6 +82,12 @@
                       </a>
                     ";
             echo "<ul class='nav nav-treeview'><li class='nav-item'>
+                    <a href='listquiz.php' class='nav-link'>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class='fa fa-list-ol nav-icon'></i>
+                    <p>List Quiz</p>
+                    </a>
+                    </li>";
+            echo "<li class='nav-item'>
               <a href='addquiz.php' class='nav-link'>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i class='fa fa-plus nav-icon'></i>
                 <p>Add Quiz</p>
@@ -90,7 +96,7 @@
           }
           else {
             echo "<li class='nav-item'>
-                      <a href='pages/widgets.html' class='nav-link'>
+                      <a href='listquiz.php' class='nav-link'>
                         <i class='nav-icon fa fa-question-circle'></i>
                         <p>
                           Quiz
