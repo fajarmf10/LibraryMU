@@ -141,9 +141,6 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-          <div class="top-right whatis">
-            <a href="whatis.php">What is LibraryMU?</a>
-          </div>
 
             <div class="content">
                 <div class="title m-b-md">
